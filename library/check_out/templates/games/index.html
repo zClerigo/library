@@ -2,7 +2,7 @@
 
 {% block content %}
    This is the {{titlePage}}</br>
-   <h2>Games that are parts of Franchises:</h2>
+   <h2>Books from this Genre</h2>
    <ul>
    {% for game in gamesList %}
       {% if game.Franchise == True %}
@@ -10,7 +10,7 @@
       {% endif %}
    {% endfor %}
    </ul>
-   <h2>Games that are Ethically Ambiguous:</h2>
+   <h2>Other Books:</h2>
    <ul>
    {% for game in gamesList %}
       {% if game.ethicallyAmbiguous == True %}

@@ -19,4 +19,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('check_in/', include('check_in.urls', namespace='check_in')),
+    path('check_out/', include('check_out.urls', namespace='check_out')),
+    path('search/', include('search.urls', namespace='search')),
 ]

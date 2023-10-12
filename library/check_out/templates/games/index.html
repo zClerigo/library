@@ -2,20 +2,12 @@
 
 {% block content %}
    This is the {{titlePage}}</br>
-   <h2>Books from this Genre</h2>
+   <h2>Books that are parts of Series:</h2>
    <ul>
-   {% for game in gamesList %}
-      {% if game.Franchise == True %}
-         <li>{{game.name}}</li>
+   {% for book in booksList %}
+      {% if book.Series == True %}
+         <li>{{book.name}}</li>
       {% endif %}
    {% endfor %}
    </ul>
-   <h2>Other Books:</h2>
-   <ul>
-   {% for game in gamesList %}
-      {% if game.ethicallyAmbiguous == True %}
-         <li>{{game.name}}</li>
-      {% endif %}
-   {% endfor %}
-   </ul> 
 {% endblock content %}

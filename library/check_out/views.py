@@ -1,16 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .games_forms import GameForm
+from .books_forms import BookForm
 from django.contrib import messages
 import datetime
 import json
 
 def index(request):
-   print("This is the library index...")
-   titlePage = "Library Index"
-   libraryList = [{"name" : "Elder Scrolls: Oblivion", "Franchise" : True, "ethicallyAmbiguous" : False}, {"name" : "Furry Shades of Gray", "Franchise" : False, "ethicallyAmbiguous" : True}, {"name" : "Grand Theft Auto 6", "Franchise" : False, "ethicallyAmbiguous" : True}, {"name" : "Elden Ring", "Franchise" : True, "ethicallyAmbiguous" : False}, {"name" : "Minecraft", "Franchise" : True,  "ethicallyAmbiguous" : False}]
-   return render(request, "games/index.html", context = {'titlePage' : titlePage,
-                                                         'libaryList' : libraryList})
+   print("This is the games index...")
+   titlePage = "Games Index"
+   booksList = [{"name" : "Harry Potter", "Series" : True}, {"name" : "The Cat in the Hat", "Series" : True}, {"name" : "How the Grinch Stole Christmas", "Series" : False}, {"name" : "The Hunger Games", "Series" : True}, {"name" : "The Lord of the Rings", "Series" : True}, {"name" : "To Kill a Mockingbird", "Series" : False}, {"name" : "Charlie and the Chocolate Factory", "Series" : False}]
+   return render(request, "library/index.html", context = {'titlePage' : titlePage,
+                                                         'booksList' : booksList})
    
 # def cookies(request):
 #    response = render(request, "games/cookies.html")
@@ -36,11 +36,11 @@ max_age=datetime.timedelta(seconds=10))
 
 def forms(request):
     if request.method == "POST":
-        if "fav_genre" not in request.POST or "fav_game" not in request.POST:
+        if "fav_genre" not in request.POST or "fav_book" not in request.POST:
             messages.add_message(request, messages.ERROR, "The form sent is incomplete")
             return render(request, "library/forms.html")        
-        response = redirect("library:game_info")     
-        response.set_cookie(key="game_data",value=json.dumps({"fav_game": request.POST["fav_game"],
+        response = redirect("library:book_info")     
+        response.set_cookie(key="book_data",value=json.dumps({"fav_book": request.POST["fav_book"],
              "fav_genre": request.POST["fav_genre"],}))
         return response
     return render(request, "library/forms.html")
@@ -50,40 +50,40 @@ def game_info(request):
     dico_cookies = request.COOKIES
     dico_context = {}
    # import pdb;pdb.set_trace()
-    if 'game_data' in dico_cookies:
+    if 'book_data' in dico_cookies:
         try:
-            dico_game_data = json.loads(dico_cookies['game_data'])
-            dico_context['game_data'] = dico_game_data
+            dico_book_data = json.loads(dico_cookies['book_data'])
+            dico_context['book_data'] = dico_book_data
          #   import pdb;pdb.set_trace()
         except:
             messages.add_message(request, messages.ERROR, "There is an error on your library data")
     #import pdb;pdb.set_trace()
-    return render(request, "library/game_info.html", context=dico_context)
+    return render(request, "library/book_info.html", context=dico_context)
 
 def new_forms(request):
    if request.method == "POST":
-       form = GameForm(request.POST)
+       form = BookForm(request.POST)
        if form.is_valid():
            # process the data
-        response = redirect("library:new_game_info")
-        response.set_cookie(key="game_data", value=json.dumps(
+        response = redirect("library:new_book_info")
+        response.set_cookie(key="book_data", value=json.dumps(
 {'id_name': request.POST['name'],
 'id_characters': request.POST['characters'],
 'id_genre': request.POST['genre']}))
         return response
    else:
        form = GameForm()
-   return render(request, "games/new_forms.html", {'game_form': form})
+   return render(request, "library/new_forms.html", {'book_form': form})
 
 
 def new_game_info(request):
     
     dico_cookies = request.COOKIES
     dico_context = {}
-    if 'game_data' in dico_cookies:
+    if 'book_data' in dico_cookies:
         try:
-            dico_game_data = json.loads(dico_cookies['game_data'])
-            dico_context['game_data'] = dico_game_data
+            dico_book_data = json.loads(dico_cookies['book_data'])
+            dico_context['book_data'] = dico_book_data
         except:
-            messages.add_message(request, messages.ERROR, "There is an error on your game data")
-    return render(request, "games/new_game_info.html", context=dico_context)
+            messages.add_message(request, messages.ERROR, "There is an error on your book data")
+    return render(request, "library/new_book_info.html", context=dico_context)

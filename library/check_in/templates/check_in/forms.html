@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="" method = "post">
+      {% csrf_token %}
+       <label for="fGenre">Fav Genre:</label><br>
+       <input type="text" id="fav_genre" name="fav_genre"><br>
+       <label for="Book">Favorite Book:</label><br>
+       <input type="text" id="fav_book" name="fav_book"><br>
+       <input type="submit" value="Submit">  
+   </form>
+{% endblock content %}

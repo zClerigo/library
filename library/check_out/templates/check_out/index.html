@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+   This is the {{titlePage}}</br>
+   <h2>Books that are parts of Series:</h2>
+   <ul>
+   {% for book in booksList %}
+      {% if book.Series == True %}
+         <li>{{book.name}}</li>
+      {% endif %}
+   {% endfor %}
+   </ul>
+{% endblock content %}

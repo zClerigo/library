@@ -1,0 +1,11 @@
+{% include "base.html" %}
+
+{% block content %}
+   <h1>Welcome to the {{titlePage}}!</h1></br>
+   <h2>At /input you can search for books by these authors:</h2>
+   <ul>
+   {% for book in booksList %}
+         <li>{{book.Author}}</li>
+   {% endfor %}
+   </ul>
+{% endblock content %}

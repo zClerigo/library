@@ -34,32 +34,6 @@ max_age=datetime.timedelta(seconds=10))
    #  expires=datetime.datetime(2023, 10, 2, 18, 23))
    return response
 
-def forms(request):
-    if request.method == "POST":
-        if "fav_genre" not in request.POST or "fav_book" not in request.POST:
-            messages.add_message(request, messages.ERROR, "The form sent is incomplete")
-            return render(request, "library/forms.html")        
-        response = redirect("library:book_info")     
-        response.set_cookie(key="book_data",value=json.dumps({"fav_book": request.POST["fav_book"],
-             "fav_genre": request.POST["fav_genre"],}))
-        return response
-    return render(request, "library/forms.html")
-
-def game_info(request):
-    
-    dico_cookies = request.COOKIES
-    dico_context = {}
-   # import pdb;pdb.set_trace()
-    if 'book_data' in dico_cookies:
-        try:
-            dico_book_data = json.loads(dico_cookies['book_data'])
-            dico_context['book_data'] = dico_book_data
-         #   import pdb;pdb.set_trace()
-        except:
-            messages.add_message(request, messages.ERROR, "There is an error on your library data")
-    #import pdb;pdb.set_trace()
-    return render(request, "library/book_info.html", context=dico_context)
-
 def new_forms(request):
    if request.method == "POST":
        form = BookForm(request.POST)
@@ -74,16 +48,3 @@ def new_forms(request):
    else:
        form = GameForm()
    return render(request, "library/new_forms.html", {'book_form': form})
-
-
-def new_game_info(request):
-    
-    dico_cookies = request.COOKIES
-    dico_context = {}
-    if 'book_data' in dico_cookies:
-        try:
-            dico_book_data = json.loads(dico_cookies['book_data'])
-            dico_context['book_data'] = dico_book_data
-        except:
-            messages.add_message(request, messages.ERROR, "There is an error on your book data")
-    return render(request, "library/new_book_info.html", context=dico_context)

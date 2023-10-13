@@ -1,0 +1,10 @@
+{% include "base.html" %}
+
+{% block content %}
+    <form action="" method = "post">
+      {% csrf_token %}
+       <label for="Author">Enter Author:</label><br>
+       <input type="text" id="author" name="author"><br>
+       <input type="submit" value="Submit">  
+   </form>
+{% endblock content %}

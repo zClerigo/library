@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+   {% block head %}
+   {% endblock head %}
+   <!--<link rel="stylesheet" href="{% static 'css/main.css' %}"> !-->
+</head>
+
+{% comment %} <body>
+   {% if messages %}
+   <div>
+      <ul class="messages">
+         {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+         {% endfor %}
+     </ul>
+  </div>
+ {% endif %}
+
+   {% block content %}
+        {% endblock content %} {% endcomment %}
+</body>
+<script>
+   {% block js %}
+   {% endblock js %}
+</script>
+</html>

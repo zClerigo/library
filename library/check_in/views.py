@@ -9,7 +9,7 @@ def index(request):
    print("This is the games index...")
    titlePage = "Games Index"
    booksList = [{"name" : "Harry Potter", "Series" : True}, {"name" : "The Cat in the Hat", "Series" : True}, {"name" : "How the Grinch Stole Christmas", "Series" : False}, {"name" : "The Hunger Games", "Series" : True}, {"name" : "The Lord of the Rings", "Series" : True}, {"name" : "To Kill a Mockingbird", "Series" : False}, {"name" : "Charlie and the Chocolate Factory", "Series" : False}]
-   return render(request, "library/index.html", context = {'titlePage' : titlePage,
+   return render(request, "check_in/index.html", context = {'titlePage' : titlePage,
                                                          'booksList' : booksList})
    
 # def cookies(request):

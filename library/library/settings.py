@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'check_in',
     'check_out',
     'search',
+    'library'
 ]
 
 MIDDLEWARE = [

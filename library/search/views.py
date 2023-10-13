@@ -1,6 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import datetime
+
+# from .games_forms import GameForm
+# from django.contrib import messages
+# import json
 
 def index(request):
    titlePage = "Search Index"
@@ -8,18 +12,11 @@ def index(request):
    return render(request, "search/index.html",context = {'titlePage' : titlePage,
                                                          'booksList' : booksList})
 def input(request):
-   dico_cookies = request.COOKIES
-   visit_nbr = 0
-   if 'visit_nbr' in dico_cookies:
-       try:
-           visit_nbr = int(dico_cookies['visit_nbr']) + 1
-       except:
-           visit_nbr = 1
-   else:
-       visit_nbr = 1
-   response = render(request, "search/input.html",
-                     context={'visit_nbr': visit_nbr})
-   response.set_cookie(key="visit_nbr", value=visit_nbr,
-max_age=datetime.timedelta(seconds=10))
-   #  expires=datetime.datetime(2023, 10, 2, 18, 23))
-   return response
+   if request.method == "POST":
+        if "author" not in request.POST:
+            messages.add_message(request, messages.ERROR, "The form sent is incomplete")
+            return render(request, "search/input.html")        
+        response = redirect("search:search_info")     
+        response.set_cookie(key="search_data",value=json.dumps({"author": request.POST["author"],}))
+        return response
+   return render(request, "search/input.html")

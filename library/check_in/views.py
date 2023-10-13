@@ -6,8 +6,13 @@ import datetime
 import json
 
 def index(request):
+<<<<<<< HEAD
    # print("This is the books index...")
    titlePage = "library check in page."
+=======
+   print("This is the games index...")
+   titlePage = "Books Index"
+>>>>>>> 3cec2fe3e611b5afc03c5651c47902c26ede743f
    booksList = [{"name" : "Harry Potter", "Series" : True}, {"name" : "The Cat in the Hat", "Series" : True}, {"name" : "How the Grinch Stole Christmas", "Series" : False}, {"name" : "The Hunger Games", "Series" : True}, {"name" : "The Lord of the Rings", "Series" : True}, {"name" : "To Kill a Mockingbird", "Series" : False}, {"name" : "Charlie and the Chocolate Factory", "Series" : False}]
    return render(request, "check_in/index.html", context = {'titlePage' : titlePage,
                                                          'booksList' : booksList})

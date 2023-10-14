@@ -12,8 +12,8 @@
 <body>
 	{% if "/" == request.path %}<b>Main</b>{% else %}<a href="/">Main</a>{% endif %}
 	| {% if "/search/" in request.path %}<b>Search</b>{% else %}<a href="/search">Search</a>{% endif %}
-	| {% if "/check_in/" in request.path %}<b>Check In</b>{% else %}<a href="/check_in">Check In</a>{% endif %}
 	| {% if "/check_out/" in request.path %}<b>Check Out</b>{% else %}<a href="/check_out">Check Out</a>{% endif %}
+	| {% if "/check_in/" in request.path %}<b>Check In</b>{% else %}<a href="/check_in">Check In</a>{% endif %}
 </body>
 <script>
    {% block js %}

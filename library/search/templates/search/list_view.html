@@ -1,0 +1,29 @@
+{% block content %}
+  <ul>
+    {% for dictionary in booksList %}
+      <li>
+        name: {{ dictionary.name }}<br>
+        author: {{ dictionary.Author}}<br>
+
+      </li>
+    {% endfor %}
+  </ul>
+
+  <form method="post" action="{% url 'delete_item' %}">
+    {% csrf_token %}
+    <button type="submit">Delete Dictionary</button>
+</form>
+<form method="post" action="{% url 'delete_item' %}">
+  {% csrf_token %}
+  <button type="submit">Edit Dictionary</button>
+</form>
+
+<form method="post" action="{% url 'form1' %}">
+  {% csrf_token %}
+  <button type="submit">form1</button>
+</form>
+<form method="post" action="{% url 'form2' %}">
+  {% csrf_token %}
+  <button type="submit">form2</button>
+</form>
+{% endblock content %}

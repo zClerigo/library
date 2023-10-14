@@ -1,0 +1,10 @@
+{% block content %}
+    <form action="" method = "post">
+      {% csrf_token %}
+       <label for="Attribute">Enter name:</label><br>
+       <input type="text" id="name" name="name" required><br>
+       <label for="Attribute">Enter author:</label><br>
+       <input type="text" id="author" name="author" required><br>
+       <input type="submit" value="Submit">  
+   </form>
+{% endblock content %}

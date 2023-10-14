@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'check_in',
-    'check_out',
+    'core',
     'search',
     'library'
 ]

@@ -1,0 +1,9 @@
+{% block content %}
+Search info<br>
+Author: {{ search_data.attribute }}<br>
+<ul>
+    {% for book in booksList %}
+        <li>{{ book|get_item:search_data.attribute }}</li>
+    {% endfor %}
+</ul>
+{% endblock content %}

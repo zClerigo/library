@@ -3,8 +3,8 @@
 {% block content %}
     <form action="" method = "post">
       {% csrf_token %}
-       <label for="Author">Enter Author:</label><br>
-       <input type="text" id="author" name="author"><br>
+       <label for="Attribute">Enter attribute:</label><br>
+       <input type="text" id="attribute" name="attribute" required><br>
        <input type="submit" value="Submit">  
    </form>
 {% endblock content %}

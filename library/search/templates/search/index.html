@@ -2,7 +2,10 @@
 
 {% block content %}
    <h1>Welcome to the {{titlePage}}!</h1></br>
-   <h2>At /input you can search for books by these authors:</h2>
+   <h2>At /input you can search for values to specific keys:</h2>
+
+   <h3>Example:</h3>
+   <h4>Search: author</h4>
    <ul>
    {% for book in booksList %}
          <li>{{book.Author}}</li>

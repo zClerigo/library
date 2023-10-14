@@ -9,19 +9,11 @@
    <!--<link rel="stylesheet" href="{% static 'css/main.css' %}"> !-->
 </head>
 
-{% comment %} <body>
-   {% if messages %}
-   <div>
-      <ul class="messages">
-         {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-         {% endfor %}
-     </ul>
-  </div>
- {% endif %}
-
-   {% block content %}
-        {% endblock content %} {% endcomment %}
+<body>
+	{% if "/" == request.path %}<b>Main</b>{% else %}<a href="/">Main</a>{% endif %}
+	| {% if "/search/" in request.path %}<b>Search</b>{% else %}<a href="/search">Search</a>{% endif %}
+	| {% if "/check_in/" in request.path %}<b>Check In</b>{% else %}<a href="/check_in">Check In</a>{% endif %}
+	| {% if "/check_out/" in request.path %}<b>Check Out</b>{% else %}<a href="/check_out">Check Out</a>{% endif %}
 </body>
 <script>
    {% block js %}

@@ -10,4 +10,13 @@
       {% endif %}
    {% endfor %}
    </ul>
+
+   <h2>Books that are not parts of Series:</h2>
+   <ul>
+   {% for book in booksList %}
+      {% if book.Series == False %}
+         <li>{{book.name}}</li>
+      {% endif %}
+   {% endfor %}
+   </ul>
 {% endblock content %}

@@ -46,5 +46,5 @@ def new_forms(request):
 'id_genre': request.POST['genre']}))
         return response
    else:
-       form = GameForm()
+       form = BookForm()
    return render(request, "library/new_forms.html", {'book_form': form})
